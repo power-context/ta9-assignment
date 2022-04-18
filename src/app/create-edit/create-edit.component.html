@@ -1,0 +1,31 @@
+<div class="create-edit-wrapper">
+  <div class="header-wrapper">
+    <h2>Create new one</h2>
+    <span class="material-icons">close</span>
+  </div>
+  <div class="name-color-wrapper">
+    <div class="name-wrapper">
+      <label for="#name">Name</label>
+      <input type="text">
+    </div>
+    <div class="color-picker-wrapper">
+      <label for="#color">Color</label>
+      <!-- <ngx-colors ngx-colors-trigger [(ngModel)]="color"></ngx-colors> -->
+      <div
+        class="color-picker"
+        ngx-colors-trigger
+        [style.background]="color"
+        [(ngModel)]="color">
+      </div>
+    </div>
+  </div>
+  <div class="tag-description-wrapper">
+    <label for="#description">Tag Description</label>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+  </div>
+  <div class="save-cancel-wrapper">
+    <button type="button">CANCEL</button>
+    <button type="submit">SAVE</button>
+  </div>
+
+</div>

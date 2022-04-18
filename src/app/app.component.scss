@@ -17,13 +17,15 @@ input {
 .main-wrapper {
   background-color: #F2F6F9;
   height: 100vh;
-  padding: 30px 70px;
+  padding: 0 30px;
+  overflow: hidden;
 }
 
 .input-wrapper {
   display: flex;
   gap: 15px;
   align-items: center;
+  margin-top: 70px;
   input {
     top: 30px;
     left: 65px;
@@ -129,6 +131,7 @@ input {
         height: 70px;
         background-color: white;
         border-radius: 10px;
+        cursor: pointer;
         &:hover {
           border-radius: 10px;
           td {
@@ -173,6 +176,7 @@ input {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    cursor: pointer;
     .color-wrapper {
       width: 100%;
       height: 75%;
