@@ -1,12 +1,221 @@
+$blue-color: #007AF9;
+$hover-grey-color: #0E4F6E;
+$main-grey-color: #749aac;
+$light-grey: #cbcbcb;
+$text-grey-color: #797979;
+
+input {
+  height: 45px;
+  background-color: white;
+  padding: 0 10px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.main-wrapper {
+  background-color: #F2F6F9;
+  height: 100vh;
+  padding: 30px 70px;
+}
+
 .input-wrapper {
   display: flex;
   gap: 15px;
   align-items: center;
   input {
-    height: 45px;
-
+    top: 30px;
+    left: 65px;
+    width: 530px;
   }
   button {
-    height: 45px;
+    width: 79px;
+    height: 43px;
+    background-color: #007AF9;
+    opacity: 1;
+    // font: normal normal medium 20px/25px Helvetica Neue;
+    letter-spacing: 0px;
+    //font-size: 30px;
+    color: white;
+    font-size: 20px;
+    border: none;
+    // box-shadow: 0px 3px 6px #00000029;
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
   }
+}
+
+.management-tools {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  h1 {
+    font-size: 24px;
+    color: #0E4F6E;
+  }
+  .management-elements {
+    display: flex;
+    button {
+      border: none;
+      background-color: inherit;
+      cursor: pointer;
+      span {
+        font-size: 24px;
+        color: $main-grey-color;
+        &:hover {
+          color: $hover-grey-color;
+        }
+      }
+      &:active {
+        span {
+          color: $blue-color;
+        }
+      }
+      &:last-of-type {
+        span {
+          font-size: 42px;
+        }
+      }
+    }
+  }
+}
+
+.find-wrapper {
+  position: relative;
+  margin-top: 18px;
+  input {
+    // width: 100%;
+    width: -webkit-fill-available;
+    height: 60px;
+    padding-left: 50px;
+    font-size: 18px;
+  }
+  span {
+    position: absolute;
+    z-index: 10;
+    font-size: 27px;
+    color: $light-grey;
+    transform: translateY(60%);
+    left: 10px;
+  }
+}
+
+.table-wrapper {
+  margin-top: 30px;
+  width: -webkit-fill-available;
+  table {
+    width: 100%;
+    // border-collapse: separate; // collapse for border-radius
+    border-spacing: 0 10px;
+    thead {
+      tr {
+        margin-bottom: 10px;
+        th {
+          font-size: 18px;
+          font-weight: 400;
+          text-align: left;
+          padding-left: 20px;
+        }
+      }
+    }
+    tbody {
+      tr {
+        margin-top: 10px;
+        height: 70px;
+        background-color: white;
+        border-radius: 10px;
+        &:hover {
+          border-radius: 10px;
+          td {
+            border: 1px solid $blue-color;
+            border-right: none;
+            border-left: none;
+            &:first-of-type {
+              border-left: 1px solid $blue-color;;
+            }
+            &:last-of-type {
+              border-right: 1px solid $blue-color;;
+            }
+          }
+        }
+        td {
+          font-size: 21px;
+          text-align: left;
+          font-weight: 200;
+          color: $text-grey-color;
+          padding: 15px 20px;
+          &:first-of-type {
+            border-radius: 10px 0 0 10px;
+          }
+          &:last-of-type {
+            border-radius: 0 10px 10px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cubes-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  gap: 25px;
+  .cube {
+    width: 205px;
+    height: 205px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .color-wrapper {
+      width: 100%;
+      height: 75%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .color-cube {
+        border-radius: 10px;
+        background-color: #007AF9;
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .title-wrapper {
+      background-color: $light-grey;
+      width: 100%;
+      height: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h2 {
+        font-size: 18px;
+      }
+    }
+    &:hover {
+      border: 1px solid $blue-color;
+      .color-wrapper {
+        .color-cube {
+          width: 110px;
+          height: 110px;
+          transition: 0.5s;
+        }
+      }
+      .title-wrapper {
+        h2 {
+          font-size: 20px;
+          color: $blue-color;
+        }
+      }
+    }
+  }
+}
+
+.b-shadow {
+  box-shadow: 0px 3px 6px #00000029;
 }
