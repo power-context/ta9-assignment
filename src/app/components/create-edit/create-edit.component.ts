@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-create-edit',
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class CreateEditComponent implements OnInit {
   color = 'red';
 
-  constructor() { }
+  constructor(public dataService: DataService) { }
+
+  closeCreation() {
+    this.dataService.isCreateActive = false;
+  }
+
 
   ngOnInit(): void {
   }

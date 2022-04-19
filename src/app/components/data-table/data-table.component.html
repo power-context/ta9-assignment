@@ -1,0 +1,20 @@
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let h of headers">
+          <i class="material-icons" [ngClass]="{'arrowUp': isReverseSorting}">south</i>
+          <span (click)="sortTableBy(h)">{{ h }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of data">
+        <td *ngFor="let h of headers">
+          <div *ngIf="h === 'Color'; else normal" class="color-item" [ngStyle]="{ 'background-color': dataItem[h] }"></div>
+          <ng-template #normal>{{ dataItem[h] }}</ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

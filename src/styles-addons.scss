@@ -1,0 +1,30 @@
+@import 'styles-colors';
+
+.form-input {
+  height: 45px;
+  background-color: white;
+  padding: 0 10px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+.main-btn {
+  width: 80px;
+  height: 45px;
+  background-color: $blue-color;
+  opacity: 1;
+  letter-spacing: 0px;
+  color: white;
+  font-size: 20px;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+.shadow {
+  box-shadow: 0px 3px 6px $shadow-color;
+}

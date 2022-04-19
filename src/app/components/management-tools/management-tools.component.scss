@@ -1,0 +1,36 @@
+@import '../../../styles-colors.scss';
+
+.management-tools {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  h1 {
+    font-size: 24px;
+    color: #0E4F6E;
+  }
+  .management-elements {
+    display: flex;
+    button {
+      border: none;
+      background-color: inherit;
+      cursor: pointer;
+      span {
+        font-size: 24px;
+        color: $main-grey-color;
+        &:hover {
+          color: $hover-grey-color;
+        }
+      }
+      &:active {
+        span {
+          color: $blue-color;
+        }
+      }
+      &:last-of-type {
+        span {
+          font-size: 42px;
+        }
+      }
+    }
+  }
+}

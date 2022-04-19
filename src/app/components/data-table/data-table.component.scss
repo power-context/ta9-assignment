@@ -1,0 +1,77 @@
+@import '../../../styles-colors.scss';
+
+.table-wrapper {
+  margin-top: 30px;
+  width: -webkit-fill-available;
+  table {
+    width: 100%;
+    border-spacing: 0 10px;
+    thead {
+      tr {
+        margin-bottom: 10px;
+        th {
+          font-size: 18px;
+          font-weight: 400;
+          text-align: left;
+          padding-left: 20px;
+          position: relative;
+          span {
+            cursor: pointer;
+          }
+          i {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            &.arrowUp {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        margin-top: 10px;
+        height: 70px;
+        background-color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover {
+          border-radius: 10px;
+          td {
+            border: 1px solid $blue-color;
+            border-right: none;
+            border-left: none;
+            &:first-of-type {
+              border-left: 1px solid $blue-color;;
+            }
+            &:last-of-type {
+              border-right: 1px solid $blue-color;;
+            }
+          }
+        }
+        td {
+          font-size: 21px;
+          text-align: left;
+          font-weight: 200;
+          color: $text-grey-color;
+          padding: 15px 20px;
+          & > .color-item {
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+          }
+          &:first-of-type {
+            border-radius: 10px 0 0 10px;
+          }
+          &:last-of-type {
+            border-radius: 0 10px 10px 0;
+          }
+        }
+      }
+    }
+  }
+}
