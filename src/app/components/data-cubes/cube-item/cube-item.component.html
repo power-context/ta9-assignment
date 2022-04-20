@@ -1,1 +1,8 @@
-<p>cube-item works!</p>
+<div class="cube shadow">
+  <div class="color-wrapper">
+    <div class="color-cube" [ngStyle]="{ 'background-color': dataItem.Color }"></div>
+  </div>
+  <div class="title-wrapper">
+    <h2>{{ dataItem.Title }}</h2>
+  </div>
+</div>

@@ -7,9 +7,12 @@
   top: 0;
   right: 0;
   padding: 20px 20px 20px 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
 }
 .header-wrapper {
   display: flex;

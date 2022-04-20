@@ -1,36 +1,55 @@
 <div class="create-edit-wrapper">
-  <div>
-    <div class="header-wrapper">
-      <h2>Create new one</h2>
-      <span class="material-icons" (click)="closeCreation()">close</span>
-    </div>
-    <div class="name-color-wrapper">
-      <div class="name-wrapper">
-        <label for="#name">Name</label>
-        <input type="text" placeholder="Type tag name...">
+  <form [formGroup]="form" (submit)="submit()">
+    <div>
+      <div class="header-wrapper">
+        <h2>Create new one</h2>
+        <span class="material-icons" (click)="closeCreation()">close</span>
       </div>
-      <div class="color-picker-wrapper">
-        <label for="#color">Color</label>
-        <div
-          class="color-picker"
-          ngx-colors-trigger
-          [style.background]="color"
-          [(ngModel)]="color">
+      <div class="name-color-wrapper">
+        <div class="name-wrapper">
+          <label for="#Title">Title</label>
+          <input
+            id="Title"
+            type="text"
+            placeholder="Type tag title..."
+            [formControl]="fc('Title')"
+          >
+          <span class="error" *ngIf="fc('Title').touched && fc('Title').hasError('required')">Type a title please</span>
+        </div>
+        <div class="color-picker-wrapper">
+          <label for="#Color">Color</label>
+          <div
+            id="Color"
+            class="color-picker"
+            ngx-colors-trigger
+            [style.background]="color"
+            [(ngModel)]="color"
+            [formControl]="fc('Color')"
+          >
+          </div>
+          <span class="error" *ngIf="fc('Color').touched && fc('Color').hasError('required')">Choose a color please</span>
         </div>
       </div>
+      <div class="tag-description-wrapper">
+        <label for="#'Created By">Created By</label>
+        <textarea
+          id="'Created By'"
+          [formControl]="fc('Created By')"
+          cols="30"
+          rows="10"
+          placeholder="Type tag created by...">
+        </textarea>
+        <span class="error" *ngIf="fc('Created By').touched && fc('Created By').hasError('required')">Type your name please</span>
+      </div>
     </div>
-    <div class="tag-description-wrapper">
-      <label for="#description">Tag Description</label>
-      <textarea name="" id="" cols="30" rows="10" placeholder="Type tag description..."></textarea>
-    </div>
-  </div>
 
-  <div class="save-cancel-wrapper">
-    <button type="button">CANCEL</button>
-    <button type="submit" class="save-btn">
-      <span class="material-icons">save</span>
-      SAVE
-    </button>
-  </div>
+    <div class="save-cancel-wrapper">
+      <button type="button" (click)="closeCreation()">CANCEL</button>
+      <button type="submit" class="save-btn">
+        <span class="material-icons">save</span>
+        SAVE
+      </button>
+    </div>
+  </form>
 
 </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IData } from 'src/app/models/data.model';
 
 @Component({
   selector: 'app-cube-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cube-item.component.scss']
 })
 export class CubeItemComponent implements OnInit {
+  @Input() dataItem!: IData;
 
   constructor() { }
 

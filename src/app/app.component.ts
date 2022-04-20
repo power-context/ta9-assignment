@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IData } from './models/data.model';
+import { CrudService } from './services/CRUD.service';
 import { DataService } from './services/data.service';
 
 @Component({
@@ -13,9 +14,25 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   allData: IData[] = [];
 
-  constructor(public dataService: DataService) {
+  // Example 1
+  exampleData1: IData[] = [];
+
+  constructor(public dataService: DataService, public crudService: CrudService) {
     this.dataService.getFakeData();
     this.setData();
+    this.getAllData();
+  }
+
+  getAllData() {
+    this.crudService.getAllData().subscribe(res => {
+      console.log('r', res.map(m => {
+        return {
+          id: m.payload.doc.id,
+          ...m.payload.doc.data() as object
+
+        }
+      }));
+    })
   }
 
   setData() {

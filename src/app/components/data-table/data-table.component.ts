@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IData, THeaderData } from 'src/app/models/data.model';
 
 
@@ -7,16 +7,12 @@ import { IData, THeaderData } from 'src/app/models/data.model';
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements OnInit {
+export class DataTableComponent {
   @Input() data: IData[] = [];
   @Input() headers!: THeaderData[];
   isReverseSorting = false;
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log('data', this.data);
-  }
 
   sortTableBy(sort: Partial<THeaderData>) {
     if (this.isReverseSorting) {
