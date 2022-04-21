@@ -28,7 +28,6 @@ export class CreateEditComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    console.log('date', new Date().toISOString());
     this.setItem();
   }
 
@@ -42,9 +41,9 @@ export class CreateEditComponent implements OnInit, OnDestroy{
         if (res && this.dataService.isEditDelete) {
           this.item = res;
           this.form.setValue({
-            Title: this.item.Title,
-            Color: this.item.Color,
-            'Created By': this.item['Created By']
+            Title: this.item.Title || '',
+            Color: this.item.Color || '',
+            'Created By': this.item['Created By'] || ''
           });
         }
       })
