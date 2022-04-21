@@ -1,5 +1,5 @@
 export interface IData {
-  id: string;
+  id?: string;
   Color: string;
   Title: string;
   ['Create Date']: string;
@@ -7,4 +7,4 @@ export interface IData {
   ['Created By']: string;
 }
 
-export type THeaderData = keyof IData;
+export type THeaderData = keyof Omit<IData, 'id'>;

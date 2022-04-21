@@ -1,11 +1,7 @@
 <div class="main-wrapper">
-  <div class="input-wrapper">
-    <input type="text" placeholder="URL" class="shadow">
-    <button class="shadow">GO</button>
-  </div>
   <app-management-tools></app-management-tools>
   <app-find-tool></app-find-tool>
-  <app-data-table  *ngIf="!dataService.isCube" [data]="this.dataService.fakeData$.getValue()" [headers]="this.dataService.headerTable"></app-data-table>
-  <!-- <app-data-cubes  *ngIf="dataService.isCube"  [data]="this.crudService.getAllData() | async"></app-data-cubes> -->
+  <app-data-table  *ngIf="!dataService.isCube" [data]="dataService.allData$.getValue()" [headers]="this.dataService.headerTable"></app-data-table>
+  <app-data-cubes  *ngIf="dataService.isCube"  [data]="dataService.allData$.getValue()"></app-data-cubes>
   <app-create-edit *ngIf="dataService.isCreateActive"></app-create-edit>
 </div>

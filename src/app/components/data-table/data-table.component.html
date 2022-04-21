@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dataItem of data">
+      <tr *ngFor="let dataItem of data" (click)="editItem(dataItem?.id)">
         <td *ngFor="let h of headers">
           <div *ngIf="h === 'Color'; else normal" class="color-item" [ngStyle]="{ 'background-color': dataItem[h] }"></div>
           <ng-template #normal>{{ dataItem[h] }}</ng-template>

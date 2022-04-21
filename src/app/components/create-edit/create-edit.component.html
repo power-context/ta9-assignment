@@ -1,4 +1,4 @@
-<div class="create-edit-wrapper">
+<div class="create-edit-wrapper shadow">
   <form [formGroup]="form" (submit)="submit()">
     <div>
       <div class="header-wrapper">
@@ -10,6 +10,7 @@
           <label for="#Title">Title</label>
           <input
             id="Title"
+            class="form-input shadow mt-15"
             type="text"
             placeholder="Type tag title..."
             [formControl]="fc('Title')"
@@ -20,7 +21,7 @@
           <label for="#Color">Color</label>
           <div
             id="Color"
-            class="color-picker"
+            class="color-picker shadow"
             ngx-colors-trigger
             [style.background]="color"
             [(ngModel)]="color"
@@ -32,23 +33,32 @@
       </div>
       <div class="tag-description-wrapper">
         <label for="#'Created By">Created By</label>
-        <textarea
+        <input
           id="'Created By'"
+          class="form-input shadow mt-15"
+          type="text"
+          placeholder="Type tag created by..."
           [formControl]="fc('Created By')"
-          cols="30"
-          rows="10"
-          placeholder="Type tag created by...">
-        </textarea>
+          >
         <span class="error" *ngIf="fc('Created By').touched && fc('Created By').hasError('required')">Type your name please</span>
       </div>
     </div>
 
     <div class="save-cancel-wrapper">
-      <button type="button" (click)="closeCreation()">CANCEL</button>
-      <button type="submit" class="save-btn">
-        <span class="material-icons">save</span>
-        SAVE
-      </button>
+      <div>
+        <button type="button" (click)="closeCreation()">CANCEL</button>
+        <button type="button" class="delete-btn" *ngIf="dataService.isEditDelete" (click)="deleteItem()">
+          <span class="material-icons">delete</span>
+          DELETE
+        </button>
+        <button type="submit" class="save-btn" [disabled]="form.invalid">
+          <span class="material-icons">{{ dataService.isEditDelete ? 'edit' : 'save' }}</span>
+          {{ dataService.isEditDelete ? 'EDIT' : 'SAVE' }}
+        </button>
+      </div>
+      <span class="error mt-15" *ngIf="form.touched && form.invalid">
+        Pleas add current values
+      </span>
     </div>
   </form>
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IData, THeaderData } from '../models/data.model';
 
 @Injectable({
@@ -11,80 +10,47 @@ export class CrudService {
   isCube = false;
   isCreateActive = false;
 
-  allData!: AngularFireList<IData>;
-  dataItem!: AngularFireObject<IData>;
+  headerTable: THeaderData[] = [ 'Color', 'Title', 'Create Date', 'Last Update', 'Created By' ];
 
-  headerTable: Partial<THeaderData[]> = [ 'Color', 'Title', 'Create Date', 'Last Update', 'Created By' ];
+  constructor(public angularFire: AngularFirestore) { }
 
-  fakeData: IData[] = [
-    { id: '', Color: 'red',     Title: 'Car', 'Create Date': '27/02/2022', 'Last Update': '27/03/2022', 'Created By': 'John' },
-    { id: '', Color: '#59E097', Title: 'Terrorist', "Create Date": '27/02/2022', "Last Update": '27/03/2022', "Created By": 'Ran Shim' },
-    { id: '', Color: '#AD0000', Title: 'Murder', "Create Date": '27/02/2022', "Last Update": '27/03/2022', "Created By": 'Or Ban' }
-  ];
-
-  fakeData$ = new BehaviorSubject<IData[]>([]);
-
-  constructor(public angularFire: AngularFirestore, private db: AngularFireDatabase) { }
-
-  getAllData() {
+  fetchAllData(): Observable<IData[]> {
     return this.angularFire
       .collection('data')
       .snapshotChanges()
-      // .pipe(map(item => {
-      //   return item.map(doc => {
-      //     return {
-      //       id: doc.payload.doc.id,
-      //       ...doc.payload.doc.data()
-      //     }
-      //   })
-      // }))
+      .pipe(map(item => {
+        return item.map(m => {
+          return {
+            id: m.payload.doc.id,
+            ...m.payload.doc.data() as object
+          } as IData
+        })
+      }))
   }
 
-  getItem(id: string) {
+  getItem(id: string): Observable<IData> {
     return this.angularFire
       .collection('data')
       .doc(id)
-      .valueChanges();
+      .valueChanges() as Observable<IData>;
   }
 
-  addItem(item: IData) {
+  addItem(item: IData): Promise<any> {
     return this.angularFire.collection('data')
     .add(item);
   }
 
-  deleteItem(id: string) {
+  deleteItem(id: string): Promise<void> {
     return this.angularFire
       .collection('data')
       .doc(id)
       .delete();
   }
 
-  updateItem(item: IData, id: string) {
+  updateItem(item: IData, id: string): Promise<void> {
     return this.angularFire
       .collection('data')
       .doc(id)
-      .update(item)
+      .set(item);
   }
-
-
-
-
-
-
-  filterData(str: string) {
-    if (str && str.trim().length > 0) {
-      let fData: IData[] = [ ...this.fakeData ];
-      fData = this.fakeData.filter((value: IData) => {
-        return value.Title.toLowerCase().trim().includes(str.toLowerCase().trim(), 0);
-      });
-      this.fakeData$.next(fData);
-      return;
-    }
-    this.fakeData$.next(this.fakeData);
-  }
-
-  getFakeData() {
-    this.fakeData$.next(this.fakeData);
-  }
-
 }

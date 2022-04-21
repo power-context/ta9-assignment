@@ -8,33 +8,25 @@ import { IData, THeaderData } from '../models/data.model';
 export class DataService {
   isCube = false;
   isCreateActive = false;
+  isEditDelete = false;
+
+  allData: IData[] = [];
+  allData$ = new BehaviorSubject<IData[]>([]);
+
+  itemData!: IData;
+  itemData$ = new BehaviorSubject<IData>({ Color: 'red', Title: '', 'Create Date': '', 'Last Update': '', 'Created By': '' });
 
   headerTable: THeaderData[] = [ 'Color', 'Title', 'Create Date', 'Last Update', 'Created By' ];
-
-  fakeData: IData[] = [
-    { id: '', Color: 'red',     Title: 'Car', 'Create Date': '27/02/2022', 'Last Update': '27/03/2022', 'Created By': 'John' },
-    { id: '',Color: '#59E097', Title: 'Terrorist', "Create Date": '27/02/2022', "Last Update": '27/03/2022', "Created By": 'Ran Shim' },
-    { id: '',Color: '#AD0000', Title: 'Murder', "Create Date": '27/02/2022', "Last Update": '27/03/2022', "Created By": 'Or Ban' }
-  ];
-
-  fakeData$ = new BehaviorSubject<IData[]>([]);
 
   constructor() { }
 
   filterData(str: string) {
+    let fData = [...this.allData];
     if (str && str.trim().length > 0) {
-      let fData: IData[] = [ ...this.fakeData ];
-      fData = this.fakeData.filter((value: IData) => {
+      fData = fData.filter((value: IData) => {
         return value.Title.toLowerCase().trim().includes(str.toLowerCase().trim(), 0);
       });
-      this.fakeData$.next(fData);
-      return;
     }
-    this.fakeData$.next(this.fakeData);
+    this.allData$.next(fData)
   }
-
-  getFakeData() {
-    this.fakeData$.next(this.fakeData);
-  }
-
 }

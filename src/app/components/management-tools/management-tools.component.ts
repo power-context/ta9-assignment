@@ -12,6 +12,7 @@ export class ManagementToolsComponent implements OnInit {
 
   createItem() {
     this.dataService.isCreateActive = true;
+    this.dataService.isEditDelete = false;
   }
 
   changeTableView(type: boolean) {

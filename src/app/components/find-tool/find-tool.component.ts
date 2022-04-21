@@ -7,7 +7,6 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./find-tool.component.scss']
 })
 export class FindToolComponent implements OnInit {
-
   constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
