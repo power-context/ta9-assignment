@@ -28,6 +28,7 @@ export class CreateEditComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    console.log('date', new Date().toISOString());
     this.setItem();
   }
 
@@ -63,11 +64,9 @@ export class CreateEditComponent implements OnInit, OnDestroy{
     return this.fc(controlName).hasError(errorName);
   }
 
-  dateHandler(): string {
+  dateToISOString(): string {
     const cd = new Date();
-    const day = cd.getDay() < 10 ? '0' + cd.getDay() : cd.getDay();
-    const month = cd.getMonth() < 10 ? '0' + cd.getMonth() : cd.getMonth();
-    return `${day}/${month}/${cd.getFullYear()}`
+    return cd.toISOString();
   }
 
   deleteItem() {
@@ -85,8 +84,8 @@ export class CreateEditComponent implements OnInit, OnDestroy{
       Color: this.fc('Color').value,
       Title: this.fc('Title').value,
       "Created By":  this.fc('Created By').value,
-      'Create Date': this.dataService.isEditDelete ? this.item['Create Date'] : this.dateHandler(),
-      'Last Update': this.dateHandler(),
+      'Create Date': this.dataService.isEditDelete ? this.item['Create Date'] : this.dateToISOString(),
+      'Last Update': this.dateToISOString()
     };
 
     this.item = { ...newItem };
