@@ -46,18 +46,21 @@
 
     <div class="save-cancel-wrapper">
       <div>
-        <button type="button" (click)="closeCreation()">CANCEL</button>
+        <button type="button" (click)="closeCreation()">
+          <span class="material-icons">cancel</span>
+          <span class="desktopOnly">CANCEL</span>
+        </button>
         <button type="button" class="delete-btn" *ngIf="dataService.isEditDelete" (click)="deleteItem()">
           <span class="material-icons">delete</span>
-          DELETE
+          <span class="desktopOnly">DELETE</span>
         </button>
         <button type="submit" class="save-btn" [disabled]="form.invalid">
           <span class="material-icons">{{ dataService.isEditDelete ? 'edit' : 'save' }}</span>
-          {{ dataService.isEditDelete ? 'EDIT' : 'SAVE' }}
+          <span class="desktopOnly">{{ dataService.isEditDelete ? 'EDIT' : 'SAVE' }}</span>
         </button>
       </div>
       <span class="error mt-15" *ngIf="form.touched && form.invalid">
-        Pleas add current values
+        Please add current values
       </span>
     </div>
   </form>

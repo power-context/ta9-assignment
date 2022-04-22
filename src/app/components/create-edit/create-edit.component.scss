@@ -96,3 +96,25 @@
     }
   }
 }
+
+.desktopOnly {
+  display: block;
+}
+
+@media only screen and(max-width: 768px) {
+  .create-edit-wrapper {
+    width: 60%;
+    padding: 20px;
+  }
+  .name-color-wrapper {
+    flex-direction: column-reverse;
+    .color-picker-wrapper {
+      .color-picker {
+        margin-top: 15px;
+      }
+    }
+  }
+  .desktopOnly {
+    display: none;
+  }
+}
